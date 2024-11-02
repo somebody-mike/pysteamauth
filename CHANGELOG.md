@@ -1,5 +1,11 @@
 # Changelog
 
+## [v1.1.0 (2024-20-20)](https://github.com/sometastycake/pysteamauth/releases/tag/v1.1.0)
+
+- Removed support python 3.7 and python 3.8
+- Use strict versions of dependencies
+- Bump versions of dependencies
+
 ## [v1.0.0 (2023-01-22)](https://github.com/sometastycake/pysteamauth/releases/tag/v1.0.0)
 
 - `get_steam_guard` method is classmethod now
