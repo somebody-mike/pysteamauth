@@ -16,8 +16,9 @@ from pysteamauth.errors import check_steam_error
 
 class BaseRequestStrategy(RequestStrategyAbstract):
 
-    def __init__(self):
+    def __init__(self, proxy: Optional[str] = None):
         self._session: Optional[ClientSession] = None
+        self._proxy = proxy
 
     def __del__(self):
         if self._session:
@@ -37,7 +38,7 @@ class BaseRequestStrategy(RequestStrategyAbstract):
     async def request(self, url: str, method: str, **kwargs: Any) -> ClientResponse:
         if self._session is None:
             self._session = self._create_session()
-        response = await self._session.request(method, url, **kwargs)
+        response = await self._session.request(method, url, proxy=self._proxy, **kwargs)
         error = response.headers.get('X-eresult')
         if error:
             check_steam_error(int(error))

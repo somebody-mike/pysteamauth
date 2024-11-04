@@ -81,6 +81,23 @@ async def main():
     await steam.login_to_steam()
 ```
 
+## Proxy usage
+
+The library supports the usage of HTTP/HTTPS proxies.
+
+```python
+from pysteamauth.auth import Steam
+
+async def main():
+    steam = Steam(
+        login='login', 
+        password='password',
+        proxy="http://ip:port"
+    )
+    
+    await steam.login_to_steam()
+```
+
 ## Error processing
 
 ```python

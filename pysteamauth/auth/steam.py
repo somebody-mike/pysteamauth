@@ -53,6 +53,7 @@ class Steam:
         device_id: Optional[str] = None,
         cookie_storage: Optional[CookieStorageAbstract] = None,
         request_strategy: Optional[RequestStrategyAbstract] = None,
+        proxy: Optional[str] = None,
     ):
         self._login = login
         self._steamid = steamid
@@ -60,8 +61,9 @@ class Steam:
         self._shared_secret = shared_secret
         self._identity_secret = identity_secret
         self._device_id = device_id
-        self._requests = request_strategy if request_strategy is not None else BaseRequestStrategy()
+        self._requests = request_strategy if request_strategy is not None else BaseRequestStrategy(proxy)
         self._storage = cookie_storage if cookie_storage is not None else BaseCookieStorage()
+        self._proxy = proxy
 
     @property
     def steamid(self) -> int:
