@@ -287,6 +287,10 @@ class Steam:
         return CAuthentication_PollAuthSessionStatus_Response.FromString(response)
 
     async def _finalize_login(self, refresh_token: str, sessionid: str) -> FinalizeLoginStatus:
+        headers = {
+            "Referer": "https://steamcommunity.com/",
+            "Origin": "https://steamcommunity.com",
+        }
         response = await self._requests.text(
             method='POST',
             url='https://login.steampowered.com/jwt/finalizelogin',
@@ -297,6 +301,7 @@ class Steam:
                     ('redir', 'https://steamcommunity.com/login/home/?goto='),
                 ],
             ),
+            headers=headers,
         )
         return FinalizeLoginStatus.parse_raw(response)
 
