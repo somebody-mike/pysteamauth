@@ -295,6 +295,9 @@ class Steam:
                     ('redir', 'https://steamcommunity.com/login/home/?goto='),
                 ],
             ),
+            headers={
+                'Origin': 'https://steamcommunity.com'
+            }
         )
         return FinalizeLoginStatus.parse_raw(response)
 
